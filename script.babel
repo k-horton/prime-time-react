@@ -1,0 +1,127 @@
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <div class="header">
+          <h1>Prime Time<span class="blinkMe">|</span></h1>
+        </div>
+        <div class="banner">
+            <h2>It's time to define whether your number's prime!</h2>
+        </div>
+     </div>
+    );
+  }
+}
+
+class PrimeInput extends React.Component {
+  render() {
+    return (
+      <div class="circle">
+        <div class="formBox">
+            <br/><br/>
+            Please enter a number below:<br/>
+            <FormBox />
+        </div>
+        <div id="output">
+        </div>
+      </div>
+    );
+  }
+}
+
+class FormBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    var result = isPrime(this.state.value);
+    document.getElementById('output').innerHTML = isPrime(this.state.value);
+    event.preventDefault();
+  }
+  
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" value={this.state.value} pattern="^[0-9]*" id="num" maxlength="16" onChange={this.handleChange.bind(this)} />
+        <input type="submit" class="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+class PageView extends React.Component {
+  render() {
+    return(
+    <div>
+        <Header />
+        <PrimeInput />
+    </div>
+    );
+  }
+}
+
+ReactDOM.render(
+      <PageView />,
+  document.getElementById('root')
+);
+
+/**
+* Function to test whether or not a number is prime.
+**/
+function isPrime(val) {
+    // initialize string
+    var returnString = "It's prime!";
+
+    // error trap for values larger than 16 bytes
+    if (val.length > 16) {
+        returnString = "Error: value too large.";
+    }
+    // error trap for non-numerical data
+    else if (isNaN(val)) {
+        returnString = "Error: Please enter an integer!";
+    }
+    else {
+        // check if it's above 1
+        if (val < 1) {
+            returnString = "The number needs to be greater than 1!";
+        }
+        // check if it's even (excluding the number 2)
+        if (val % 2 === 0 && val > 2) {
+            returnString = "Not prime.";
+        }
+        else {
+            /* set limit to square root of
+            * value, adding 1 as a buffer to
+            * round up */
+            var limit = Math.sqrt(val) + 1;
+
+            /* go through odd numbers, up to
+            * the limit, to test if it's prime */
+            for (var i = 3; i < limit; i += 2) {
+                if (val % i === 0) {
+                    returnString = "Not prime.";
+                }
+            }
+        }
+    }
+    return returnString;
+}
+
+$(document).ready(function () {
+    /* blinking function (that I found, 
+    * I didn't write it - it's just for fun!) */
+    function blinker() {
+        $('.blinkMe').fadeOut(500);
+        $('.blinkMe').fadeIn(500);
+    }
+    setInterval(blinker, 1000);
+});

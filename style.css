@@ -1,0 +1,58 @@
+body {
+    background: #a21d60;
+    font-family: Helvetica, Arial;
+    padding: 10px;
+}
+
+.header {
+    background: #fafaed;
+    color: #000000;
+    text-align: center;
+    margin: 1px;
+    border-radius: 50px;
+    font-family: Monospace;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.banner {
+    background: #761546;
+    margin: 1% 20% 10% 20%;
+    box-shadow: 2px 2px 10px 2px #000000;
+    text-align: center;
+    font-family: Helvetica, Arial;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fafaed;
+}
+
+.formBox {
+    text-align: center;
+}
+
+.circle {
+    background: #fafaed;
+    border-radius: 50%;
+    border: solid 2px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,5);
+    height: 200px;
+    width: 200px;
+    padding: 40px;
+    margin: auto;
+}
+
+.submit {
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+#output {
+    text-align: center;
+    font-weight: bold;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    margin-top: 5px;
+    margin: auto;
+    padding-top: 0px;
+}
